@@ -1,0 +1,36 @@
+<div class="dropdown" ngbDropdown style="padding: 30px">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" ngbDropdownToggle aria-haspopup="true"
+    aria-expanded="false">
+    Select Number of textboxes
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" ngbDropdownMenu>
+    <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">
+      <a id="dropdown{{i}}" class="dropdown-item" (click)="generateTextbox(i)">
+        {{i}} Textbox </a>
+    </div>
+
+  </div>
+</div>
+<div class="row" *ngIf="textBoxes" style="padding: 25px">
+  <ul class="list-group" style="margin: 10px; width:580px">
+    <li class="list-group-item active">Textbox</li>
+    <li *ngFor="let c of count; let i = index" class="list-group-item">
+      <textarea class="form-control" [(ngModel)]="c.text" id="textarea{{i}}" rows="1" value="{{c.text}}"></textarea>
+    </li>
+
+  </ul>
+  <ul class="list-group" style="margin: 10px; width:300px">
+    <li class="list-group-item active">Status</li>
+    <li *ngFor="let c of count; let i = index" class="list-group-item">
+      <p id="status{{i}}">{{c.status}}</p>
+    </li>
+
+  </ul>
+  <ul class="list-group" style="margin: 10px">
+    <li class="list-group-item active">Submit Button</li>
+    <li *ngFor="let c of count; let i = index" class="list-group-item">
+      <button id="button{{i}}" type="button" class="btn btn-primary" (click)="startWorkflow(c)" [disabled]="c.disabled">Start Workflow</button>
+    </li>
+
+  </ul>
+</div>
